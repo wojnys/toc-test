@@ -5,6 +5,7 @@ type TableOfContentsArg = {
 };
 
 // TODO: expand/collapse of items
+// TODO: Collapse recursively
 export const useTableOfContents = ({ items }: TableOfContentsArg) => {
     const onClick = (item: ContentItem) => () => console.log(item);
 
