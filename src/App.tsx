@@ -1,9 +1,9 @@
-import React from 'react';
-import { TableOfContents } from './components/TableOfContents/TableOfContents';
-import { useTableOfContents } from './components/TableOfContents/useTableOfContents';
-import { tableOfContentsItems } from './components/TableOfContents/data/tableOfContentsItems';
+import './App.css'
+import {tableOfContentsItems} from "./components/TableOfContents/data/tableOfContentsItems.ts";
+import {useTableOfContents} from "./components/TableOfContents/useTableOfContents.ts";
+import {TableOfContents} from "./components/TableOfContents/TableOfContents.tsx";
 
-const App = () => {
+function App() {
     const items = tableOfContentsItems;
     const props = useTableOfContents({ items });
 
@@ -12,6 +12,6 @@ const App = () => {
             <TableOfContents {...props} />
         </div>
     );
-};
+}
 
-export default App;
+export default App

@@ -1,4 +1,4 @@
-import { ContentItem } from './types/ContentItem';
+import { ContentItem } from './types/ContentItem.ts';
 
 type TableOfContentsArg = {
     items: ContentItem[];

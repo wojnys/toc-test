@@ -1,4 +1,4 @@
-import { ContentItem } from '../types/ContentItem';
+import { ContentItem } from '../types/ContentItem.ts';
 
 export const NOZ_TOC_ITEMS_MOCK: ContentItem[] = [
     {

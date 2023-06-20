@@ -1,4 +1,4 @@
-import { ContentItem } from '../types/ContentItem';
+import { ContentItem } from '../types/ContentItem.ts';
 
 //? Given table of contents items
 //? Order of items is important

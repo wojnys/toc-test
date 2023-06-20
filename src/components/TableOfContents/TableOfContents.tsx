@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useTableOfContents } from './useTableOfContents';
+import { useTableOfContents } from './useTableOfContents.ts';
 
 type TableOfContentsProps = ReturnType<typeof useTableOfContents>;
 
