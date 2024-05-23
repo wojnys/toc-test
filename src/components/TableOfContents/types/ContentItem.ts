@@ -5,4 +5,5 @@ export type ContentItem = {
     name: string;
     parentId?: string | null;
     __typename?: string;
+    isExpanded?: boolean;
 };
