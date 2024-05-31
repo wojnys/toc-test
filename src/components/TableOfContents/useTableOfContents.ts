@@ -65,27 +65,14 @@ export const useTableOfContents = ({ items }: TableOfContentsArg) => {
         setKeptItems(newAllExpandedItems)
     };
 
-    let itemsToRemove: string[] = [];
     const collapseRecursively = (parentId: string, expandedItemsSet: Set<string>) => {
         const childItems = onlyExpandedItems.filter(i => i.parentId === parentId);
 
-        itemsToRemove.push(parentId);
         childItems.forEach(child => {
             expandedItemsSet.delete(child.id);
             collapseRecursively(child.id, expandedItemsSet);
         });
-        console.log(itemsToRemove)
     }
-    //
-    // const deleteItemsaFromSet = (parentId: string, expandedItems:Set<ContentItem> ) => {
-    //     const childItems = onlyExpandedItems.filter(i => i.parentId === parentId);
-    //     childItems.forEach(child => {
-    //         expandedItems.delete(child);
-    //         console.log(child)
-    //         deleteItemsaFromSet(child.id, expandedItems);
-    //     });
-    // }
-
 
     // Load root item
     if (keptItems.size === 0) {
