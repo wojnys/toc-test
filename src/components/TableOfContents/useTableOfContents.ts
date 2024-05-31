@@ -40,7 +40,7 @@ export const useTableOfContents = ({ items }: TableOfContentsArg) => {
     const onClick = (item: ContentItem) => () => {
         const newExpandedItemIds = new Set(expandedItemIds);
 
-        const newItems = new Set(keptItems)
+        const newAllExpandedItems = new Set(keptItems)
         if (newExpandedItemIds.has(item.id)) {
             newExpandedItemIds.delete(item.id);
 
@@ -51,16 +51,18 @@ export const useTableOfContents = ({ items }: TableOfContentsArg) => {
             // Check if item has at least one children
             const childrenCount = items.filter(i => i.parentId === item.id).length;
             if (childrenCount !== 0) {
+                // Add newly expanded item ID
                 newExpandedItemIds.add(item.id);
 
+                // Add newly all expanded items
                 const filteredNewlyExpandedItems = allItems.filter(i => i.parentId === item.id);
-                filteredNewlyExpandedItems.forEach(i => newItems.add(i));
+                filteredNewlyExpandedItems.forEach(i => newAllExpandedItems.add(i));
             } else {
                 return { items, expandedItemIds, onClick };
             }
         }
         setExpandedItemsId(newExpandedItemIds);
-        setKeptItems(newItems)
+        setKeptItems(newAllExpandedItems)
     };
 
     let itemsToRemove: string[] = [];
@@ -72,7 +74,17 @@ export const useTableOfContents = ({ items }: TableOfContentsArg) => {
             expandedItemsSet.delete(child.id);
             collapseRecursively(child.id, expandedItemsSet);
         });
+        console.log(itemsToRemove)
     }
+    //
+    // const deleteItemsaFromSet = (parentId: string, expandedItems:Set<ContentItem> ) => {
+    //     const childItems = onlyExpandedItems.filter(i => i.parentId === parentId);
+    //     childItems.forEach(child => {
+    //         expandedItems.delete(child);
+    //         console.log(child)
+    //         deleteItemsaFromSet(child.id, expandedItems);
+    //     });
+    // }
 
 
     // Load root item
