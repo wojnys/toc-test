@@ -10,15 +10,11 @@ type TableOfContentsProps = {
 };
 
 export const TableOfContents: React.FC<TableOfContentsProps> = ({ items, expandedItemIds, onClick}) => {
-    // const memoizedExpandedItemIds = useMemo(() => expandedItemIds, [expandedItemIds]);
-
-    const renderItems = (parentId: string | undefined, level: number) => {
-        const filteredItems = items.filter((item) => item.parentId === parentId);
-
+        // Zadny filter - prochazeni pouze pres .map
         return (
             <div>
-                {filteredItems.map((item) => (
-                    <div key={item.id} style={{ paddingLeft: `${level * 20}px`, cursor: 'pointer' }}>
+                {items.map((item) => (
+                    <div key={item.id} style={{ paddingLeft: `${item.level * 30}px`,paddingTop:'1px',  cursor: 'pointer' }}>
                         <div onClick={onClick(item)} style={{ display: 'flex' }}>
                             {expandedItemIds.has(item.id) ? (
                                 <div
@@ -47,12 +43,8 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ items, expande
                             )}
                             {item.name}
                         </div>
-                        {expandedItemIds.has(item.id) && renderItems(item.id,level+1)}
                     </div>
                 ))}
             </div>
         );
-    };
-
-    return <div>{renderItems(undefined, 1)}</div>;
 };
