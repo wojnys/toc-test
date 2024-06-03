@@ -12,7 +12,6 @@ type TableOfContentsProps = {
 export const TableOfContents: React.FC<TableOfContentsProps> = ({ items, expandedItemIds, onClick}) => {
     // const memoizedExpandedItemIds = useMemo(() => expandedItemIds, [expandedItemIds]);
 
-
     const renderItems = (parentId: string | undefined, level: number) => {
         const filteredItems = items.filter((item) => item.parentId === parentId);
 
